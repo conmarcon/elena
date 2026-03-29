@@ -34,8 +34,7 @@
             font-weight: bold; font-size: 1rem; cursor: pointer; display: flex;
             align-items: center; gap: 12px; outline: none; -webkit-tap-highlight-color: transparent;
         }
-        .menu-btn i { color: var(--gold); pointer-events: none; }
-        .menu-btn span { pointer-events: none; }
+        .menu-btn i, .menu-btn span { pointer-events: none; }
 
         #overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -79,24 +78,42 @@
 
     <script>
         const repo = {
-            el: { n: "ΕΛΕΝΑ", i: '"Έλενα: Η ακτινοβόλος. Ένα όνομα που φέρει το φως και τη λάμψη, συμβολίζοντας την ακαταμάχητη γοητεία και την πνευματική φωτεινότητα."', b: ["Ετυμολογία & Σημασία", "Σύμβολο Φωτός", "Θρησκευτική Παράδοση", "Προσωπικότητα"], d: ["Προέρχεται από το αρχαίο ελληνικό 'Ελένη' και τη λέξη 'ελάνη' (πυρσός). Σημαίνει τη φωτεινή, αυτή που ακτινοβολεί.", "Συμβολίζει την ομορφιά που μπορεί να αλλάξει την ιστορία και το φως που διαλύει το σκοτάδι, προσδίδοντας μια αύρα αρχοντιάς.", "Η Αγία Ελένη συμβολίζει την υπομονή, την επιμονή και την ανακάλυψη της αλήθειας, αποτελώντας πηγή έμπνευσης για αιώνες.", "Μια Έλενα διακρίνεται για την ευγένειά της, την καλλιτεχνική της φύση και την εσωτερική της δύναμη. Είναι άνθρωπος που φέρνει ζεστασιά στους γύρω της."] },
-            en: { n: "ELENA", i: '"Elena: The radiant one. A name carrying light and brilliance, symbolizing irresistible charm and spiritual brightness."', b: ["Etymology & Meaning", "Symbol of Light", "Religious Tradition", "Personality"], d: ["Derived from the ancient Greek 'Helene' and the word 'elane' (torch). It means the shining one, the radiant one.", "It symbolizes beauty that can change history and the light that dispels darkness, carrying an aura of nobility.", "Saint Helen symbolizes patience, perseverance, and the discovery of truth, serving as an inspiration for centuries.", "An Elena is known for her kindness, her artistic nature, and her inner strength. She is a person who brings warmth to others."] },
-            fr: { n: "ELENA", i: '"Elena : la rayonnante. Un nom portant la lumière et l\'éclat, symbolisant un charme irrésistible et la clarté spirituelle."', b: ["Étymologie", "Symbole de Lumière", "Tradition Religieuse", "Personnalité"], d: ["Vient du grec ancien 'Hélène' και du mot 'elane' (flambeau). Signifie la lumineuse, celle qui brille.", "Symbole d'une beauté légendaire και d'une lumière qui dissipe l'obscurité, apportant une aura d'élégance.", "Sainte Hélène symbolise la persévérance, la patience et la quête de la vérité à travers les âges.", "Elena se distingue par sa douceur, sa nature artistique και sa force intérieure."] },
-            de: { n: "ELENA", i: '"Elena: Die Strahlende. Ein Name, der Licht und Glanz in sich trägt und unwiderstehlichen Charme symbolisiert."', b: ["Etymologie", "Symbol des Lichts", "Tradition", "Persönlichkeit"], d: ["Abgeleitet vom altgriechischen 'Helene' und dem Wort 'elane' (Fackel). Es bedeutet die Leuchtende.", "Es symbolisiert Schönheit, die Geschichte schreibt, und das Licht, das die Dunkelheit vertreibt.", "Die Heilige Helena steht für Ausdauer, Geduld und die Entdeckung der Wahrheit.", "Eine Elena zeichnet sich durch ihre Güte, ihre künstlerische Ader und ihre innere Stärke aus."] }
+            el: { n: "ΕΛΕΝΑ", i: '"Έλενα: Η ακτινοβόλος. Ένα όνομα που φέρει το φως και τη λάμψη, συμβολίζοντας την ακαταμάχητη γοητεία και την πνευματική φωτεινότητα."', b: ["Ετυμολογία & Σημασία", "Σύμβολο Φωτός", "Θρησκευτική Παράδοση", "Προσωπικότητα"], d: ["Προέρχεται από το αρχαίο ελληνικό \'Ελένη\' και τη λέξη \'ελάνη\' (πυρσός). Σημαίνει τη φωτεινή, αυτή που ακτινοβολεί.", "Συμβολίζει την ομορφιά που μπορεί να αλλάξει την ιστορία και το φως που διαλύει το σκοτάδι, προσδίδοντας μια αύρα αρχοντιάς.", "Η Αγία Ελένη συμβολίζει την υπομονή, την επιμονή και την ανακάλυψη της αλήθειας, αποτελώντας πηγή έμπνευσης για αιώνες.", "Μια Έλενα διακρίνεται για την ευγένειά της, την καλλιτεχνική της φύση και την εσωτερική της δύναμη. Είναι άνθρωπος που φέρνει ζεστασιά στους γύρω της."] },
+            en: { n: "ELENA", i: '"Elena: The radiant one. A name carrying light and brilliance, symbolizing irresistible charm and spiritual brightness."', b: ["Etymology & Meaning", "Symbol of Light", "Religious Tradition", "Personality"], d: ["Derived from the ancient Greek \'Helene\' and the word \'elane\' (torch). It means the shining one, the radiant one.", "It symbolizes beauty that can change history and the light that dispels darkness, carrying an aura of nobility.", "Saint Helen symbolizes patience, perseverance, and the discovery of truth, serving as an inspiration for centuries.", "An Elena is known for her kindness, her artistic nature, and her inner strength. She is a person who brings warmth to others."] },
+            fr: { n: "ELENA", i: '"Elena : la rayonnante. Un nom portant la lumière et l\'éclat, symbolisant un charme irrésistible et la clarté spirituelle."', b: ["Étymologie", "Symbole de Lumière", "Tradition Religieuse", "Personnalité"], d: ["Vient du grec ancien \'Hélène\' και du mot \'elane\' (flambeau). Signifie la lumineuse, celle qui brille.", "Symbole d\'une beauté légendaire και d\'une lumière qui dissipe l\'obscurité, apportant une aura d\'élégance.", "Sainte Hélène symbolise la persévérance, la patience et la quête de la vérité à travers les âges.", "Elena se distingue par sa douceur, sa nature artistique και sa force intérieure."] },
+            de: { n: "ELENA", i: '"Elena: Die Strahlende. Ein Name, der Licht und Glanz in sich trägt und unwiderstehlichen Charme symbolisiert."', b: ["Etymologie", "Symbol des Lichts", "Tradition", "Persönlichkeit"], d: ["Abgeleitet vom altgriechischen \'Helene\' und dem Wort \'elane\' (Fackel). Es bedeutet die Leuchtende.", "Es symbolisiert Schönheit, die Geschichte schreibt, und das Licht, das die Dunkelheit vertreibt.", "Die Heilige Helena steht für Ausdauer, Geduld und die Entdeckung der Wahrheit.", "Eine Elena zeichnet sich durch ihre Güte, ihre künstlerische Ader und ihre innere Stärke aus."] }
         };
 
         let activeL = 'el';
-        const view = document.getElementById('overlay');
+        
+        // Εκτέλεση μόλις φορτώσει το DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            const view = document.getElementById('overlay');
 
-        document.addEventListener('click', (e) => {
-            const f = e.target.closest('.flag-btn');
-            const m = e.target.closest('.menu-btn');
-            const c = e.target.closest('.close-x') || e.target === view;
+            document.addEventListener('click', (e) => {
+                const f = e.target.closest('.flag-btn');
+                const m = e.target.closest('.menu-btn');
+                const c = e.target.closest('.close-x') || e.target === view;
 
-            if (f) {
-                activeL = f.dataset.l;
-                document.querySelectorAll('.flag-btn').forEach(el => el.classList.remove('active'));
-                f.classList.add('active');
-                document.getElementById('n-val').innerText = repo[activeL].n;
-                document.getElementById('i-val').innerText = repo[activeL].i;
-                for(let k
+                if (f) {
+                    activeL = f.getAttribute('data-l');
+                    document.querySelectorAll('.flag-btn').forEach(el => el.classList.remove('active'));
+                    f.classList.add('active');
+                    document.getElementById('n-val').innerText = repo[activeL].n;
+                    document.getElementById('i-val').innerText = repo[activeL].i;
+                    for(let k=0; k<4; k++) document.getElementById('b'+k).innerText = repo[activeL].b[k];
+                }
+                
+                if (m) {
+                    const idx = m.getAttribute('data-i');
+                    document.getElementById('p-t').innerText = repo[activeL].b[idx];
+                    document.getElementById('p-d').innerText = repo[activeL].d[idx];
+                    view.style.display = 'flex';
+                }
+                
+                if (c) view.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
