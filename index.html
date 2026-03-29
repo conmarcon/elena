@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elena Info</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root { --gold: #D4AF37; }
+        body {
+            margin: 0; padding: 20px; font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
+            background: linear-gradient(180deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            background-attachment: fixed; color: white; display: flex; justify-content: center;
+        }
+        .card {
+            width: 100%; max-width: 360px; background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px; padding: 25px; border: 1px solid rgba(255,255,255,0.2);
+            text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        .flags-row { display: flex; justify-content: center; gap: 18px; margin-bottom: 20px; }
+        .flag-btn { font-size: 32px; cursor: pointer; filter: grayscale(0.9); transition: 0.3s; padding: 5px; -webkit-tap-highlight-color: transparent; }
+        .flag-btn.active { filter: grayscale(0); transform: scale(1.15); border-bottom: 2px solid var(--gold); }
+        
+        h1 { color: var(--gold); letter-spacing: 3px; margin: 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-size: 2.2rem; }
+        .intro {
+            background: rgba(0,0,0,0.4); padding: 18px; border-radius: 15px;
+            border-left: 5px solid var(--gold); font-style: italic; text-align: left;
+            line-height: 1.6; margin-bottom: 25px; font-size: 0.95rem;
+        }
+        .menu-btn {
+            background: rgba(255,255,255,0.1); width: 100%; border: 1px solid rgba(212, 175, 55, 0.5);
+            padding: 16px; margin-bottom: 12px; border-radius: 15px; color: white;
+            font-weight: bold; font-size: 1rem; cursor: pointer; display: flex;
+            align-items: center; gap: 12px; outline: none; -webkit-tap-highlight-color: transparent;
+        }
+        .menu-btn i { color: var(--gold); pointer-events: none; }
+        .menu-btn span { pointer-events: none; }
+
+        #overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92); z-index: 99999; justify-content: center; align-items: center;
+        }
+        .popup {
+            background: white; color: #222; width: 88%; max-width: 320px;
+            border-radius: 20px; overflow: hidden; position: relative;
+        }
+        .p-head { background: linear-gradient(to right, #1a2a6c, #801313); color: white; padding: 18px; font-weight: bold; }
+        .p-text { padding: 25px; line-height: 1.7; font-size: 1.05rem; }
+        .close-x { position: absolute; top: 10px; right: 15px; color: white; font-size: 35px; cursor: pointer; line-height: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="flags-row">
+            <div class="flag-btn active" data-l="el">🇬🇷</div>
+            <div class="flag-btn" data-l="en">🇬🇧</div>
+            <div class="flag-btn" data-l="fr">🇫🇷</div>
+            <div class="flag-btn" data-l="de">🇩🇪</div>
+        </div>
+
+        <h1 id="n-val">ΕΛΕΝΑ</h1>
+        <div id="i-val" class="intro">"Έλενα: Η ακτινοβόλος. Ένα όνομα που φέρει το φως και τη λάμψη, συμβολίζοντας την ακαταμάχητη γοητεία και την πνευματική φωτεινότητα."</div>
+
+        <button class="menu-btn" data-i="0"><i class="fas fa-scroll"></i> <span id="b0">Ετυμολογία & Σημασία</span></button>
+        <button class="menu-btn" data-i="1"><i class="fas fa-sun"></i> <span id="b1">Σύμβολο Φωτός</span></button>
+        <button class="menu-btn" data-i="2"><i class="fas fa-cross"></i> <span id="b2">Θρησκευτική Παράδοση</span></button>
+        <button class="menu-btn" data-i="3"><i class="fas fa-sparkles"></i> <span id="b3">Προσωπικότητα</span></button>
+    </div>
+
+    <div id="overlay">
+        <div class="popup">
+            <div class="close-x">&times;</div>
+            <div id="p-t" class="p-head"></div>
+            <div id="p-d" class="p-text"></div>
+        </div>
+    </div>
+
+    <script>
+        const repo = {
+            el: { n: "ΕΛΕΝΑ", i: '"Έλενα: Η ακτινοβόλος. Ένα όνομα που φέρει το φως και τη λάμψη, συμβολίζοντας την ακαταμάχητη γοητεία και την πνευματική φωτεινότητα."', b: ["Ετυμολογία & Σημασία", "Σύμβολο Φωτός", "Θρησκευτική Παράδοση", "Προσωπικότητα"], d: ["Προέρχεται από το αρχαίο ελληνικό 'Ελένη' και τη λέξη 'ελάνη' (πυρσός). Σημαίνει τη φωτεινή, αυτή που ακτινοβολεί.", "Συμβολίζει την ομορφιά που μπορεί να αλλάξει την ιστορία και το φως που διαλύει το σκοτάδι, προσδίδοντας μια αύρα αρχοντιάς.", "Η Αγία Ελένη συμβολίζει την υπομονή, την επιμονή και την ανακάλυψη της αλήθειας, αποτελώντας πηγή έμπνευσης για αιώνες.", "Μια Έλενα διακρίνεται για την ευγένειά της, την καλλιτεχνική της φύση και την εσωτερική της δύναμη. Είναι άνθρωπος που φέρνει ζεστασιά στους γύρω της."] },
+            en: { n: "ELENA", i: '"Elena: The radiant one. A name carrying light and brilliance, symbolizing irresistible charm and spiritual brightness."', b: ["Etymology & Meaning", "Symbol of Light", "Religious Tradition", "Personality"], d: ["Derived from the ancient Greek 'Helene' and the word 'elane' (torch). It means the shining one, the radiant one.", "It symbolizes beauty that can change history and the light that dispels darkness, carrying an aura of nobility.", "Saint Helen symbolizes patience, perseverance, and the discovery of truth, serving as an inspiration for centuries.", "An Elena is known for her kindness, her artistic nature, and her inner strength. She is a person who brings warmth to others."] },
+            fr: { n: "ELENA", i: '"Elena : la rayonnante. Un nom portant la lumière et l\'éclat, symbolisant un charme irrésistible et la clarté spirituelle."', b: ["Étymologie", "Symbole de Lumière", "Tradition Religieuse", "Personnalité"], d: ["Vient du grec ancien 'Hélène' και du mot 'elane' (flambeau). Signifie la lumineuse, celle qui brille.", "Symbole d'une beauté légendaire και d'une lumière qui dissipe l'obscurité, apportant une aura d'élégance.", "Sainte Hélène symbolise la persévérance, la patience et la quête de la vérité à travers les âges.", "Elena se distingue par sa douceur, sa nature artistique και sa force intérieure."] },
+            de: { n: "ELENA", i: '"Elena: Die Strahlende. Ein Name, der Licht und Glanz in sich trägt und unwiderstehlichen Charme symbolisiert."', b: ["Etymologie", "Symbol des Lichts", "Tradition", "Persönlichkeit"], d: ["Abgeleitet vom altgriechischen 'Helene' und dem Wort 'elane' (Fackel). Es bedeutet die Leuchtende.", "Es symbolisiert Schönheit, die Geschichte schreibt, und das Licht, das die Dunkelheit vertreibt.", "Die Heilige Helena steht für Ausdauer, Geduld und die Entdeckung der Wahrheit.", "Eine Elena zeichnet sich durch ihre Güte, ihre künstlerische Ader und ihre innere Stärke aus."] }
+        };
+
+        let activeL = 'el';
+        const view = document.getElementById('overlay');
+
+        document.addEventListener('click', (e) => {
+            const f = e.target.closest('.flag-btn');
+            const m = e.target.closest('.menu-btn');
+            const c = e.target.closest('.close-x') || e.target === view;
+
+            if (f) {
+                activeL = f.dataset.l;
+                document.querySelectorAll('.flag-btn').forEach(el => el.classList.remove('active'));
+                f.classList.add('active');
+                document.getElementById('n-val').innerText = repo[activeL].n;
+                document.getElementById('i-val').innerText = repo[activeL].i;
+                for(let k
